@@ -11,11 +11,15 @@ class TestMain {
     }
 
     @Test
-    fun `initial Score Player Should Be 0`(){
+    fun `player initial score should be 0`(){
         val player = Player()
         assertThat(player.getScore()).isEqualTo(0)
-
     }
 
-
+    @Test
+    fun `player score should be 15 when player scored`() {
+        val player = Player()
+        player.score()
+        assertThat(player.getScore()).isEqualTo(15)
+    }
 }
