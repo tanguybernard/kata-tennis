@@ -30,4 +30,13 @@ class PlayerTest {
         player.score()
         assertThat(player.getScore()).isEqualTo(30)
     }
+
+    @Test
+    fun `player score should be 40 when player scored three times`() {
+        val player = Player()
+        player.score()
+        player.score()
+        player.score()
+        assertThat(player.getScore()).isEqualTo(40)
+    }
 }

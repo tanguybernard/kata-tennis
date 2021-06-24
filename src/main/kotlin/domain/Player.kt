@@ -8,6 +8,10 @@ class Player {
     }
 
     fun score() {
-        score += 15
+        if (score == 30) {
+            score += 10
+        } else {
+            score += 15
+        }
     }
 }
