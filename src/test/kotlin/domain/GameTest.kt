@@ -1,6 +1,5 @@
 package domain
 
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -25,5 +24,16 @@ class GameTest {
 
         assertThat(gameScore.playerOne).isEqualTo(15)
         assertThat(gameScore.playerTwo).isEqualTo(0)
+    }
+
+    @Test
+    fun `should display 0 - 15 when player two scored`() {
+        val game = Game()
+
+        game.playerTwoScored()
+        val gameScore = game.displayScore()
+
+        assertThat(gameScore.playerOne).isEqualTo(0)
+        assertThat(gameScore.playerTwo).isEqualTo(15)
     }
 }
