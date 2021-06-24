@@ -15,4 +15,15 @@ class GameTest {
         assertThat(gameScore.playerOne).isEqualTo(0)
         assertThat(gameScore.playerTwo).isEqualTo(0)
     }
+
+    @Test
+    fun `should display 15 - 0 when player one scored`() {
+        val game = Game()
+
+        game.playerOneScored()
+        val gameScore = game.displayScore()
+
+        assertThat(gameScore.playerOne).isEqualTo(15)
+        assertThat(gameScore.playerTwo).isEqualTo(0)
+    }
 }
