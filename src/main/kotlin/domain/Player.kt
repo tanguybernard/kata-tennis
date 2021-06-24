@@ -8,6 +8,6 @@ class Player {
     }
 
     fun score() {
-        score = 15
+        score += 15
     }
 }
