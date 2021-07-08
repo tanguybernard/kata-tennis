@@ -30,4 +30,14 @@ class GameTest {
         assertThat(game.printScore()).isEqualTo("love-15")
     }
 
+    @Test
+    fun `should display 15 - 15 when both scored`() {
+        val game = Game()
+
+        game.playerTwoScored()
+        game.playerOneScored()
+
+        assertThat(game.printScore()).isEqualTo("15-15")
+    }
+
 }

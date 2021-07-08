@@ -14,8 +14,6 @@ class Game {
     }
 
     fun printScore(): String {
-        if (playerTwo.getScore() == Score.FIFTEEN) return "love-15"
-        if (playerOne.getScore() == Score.FIFTEEN) return "15-love"
-        return "love-love"
+        return "${playerOne.getScore().value}-${playerTwo.getScore().value}"
     }
 }
