@@ -9,11 +9,7 @@ class GameTest {
     fun `should display both players initial score`() {
         val game = Game()
 
-        val gameScore = game.displayScore()
-
-        assertThat(gameScore.playerOne).isEqualTo(Score.ZERO)
-        assertThat(gameScore.playerTwo).isEqualTo(Score.ZERO)
-        assertThat(gameScore.printScore()).isEqualTo("love-love")
+        assertThat(game.printScore()).isEqualTo("love-love")
     }
 
     @Test
@@ -21,10 +17,8 @@ class GameTest {
         val game = Game()
 
         game.playerOneScored()
-        val gameScore = game.displayScore()
 
-        assertThat(gameScore.playerOne).isEqualTo(Score.FIFTEEN)
-        assertThat(gameScore.playerTwo).isEqualTo(Score.ZERO)
+        assertThat(game.printScore()).isEqualTo("15-love")
     }
 
     @Test
@@ -32,10 +26,8 @@ class GameTest {
         val game = Game()
 
         game.playerTwoScored()
-        val gameScore = game.displayScore()
 
-        assertThat(gameScore.playerOne).isEqualTo(Score.ZERO)
-        assertThat(gameScore.playerTwo).isEqualTo(Score.FIFTEEN)
+        assertThat(game.printScore()).isEqualTo("love-15")
     }
 
 }
