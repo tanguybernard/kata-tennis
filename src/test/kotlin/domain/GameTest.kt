@@ -80,6 +80,31 @@ class GameTest {
 
     @Test
     fun `should display "advantage player one" when player one have score after deuce`() {
+        val game = deuce()
+
+        game.playerOneScored()
+
+        assertThat(game.printScore()).isEqualTo("advantage player one")
+    }
+
+    @Test
+    fun `should display "advantage player two" when player two have score after deuce`() {
+        val game = deuce()
+
+        game.playerTwoScored()
+
+        assertThat(game.printScore()).isEqualTo("advantage player two")
+    }
+
+    @Test
+    fun `should display "player one wins" when player one score while he has advantage`() {
+        val game = playerOneHasAdvantage()
+        game.playerOneScored()
+
+        assertThat(game.printScore()).isEqualTo("player one wins")
+    }
+
+    private fun playerOneHasAdvantage(): Game {
         val game = Game()
 
         game.playerOneScored()
@@ -91,9 +116,19 @@ class GameTest {
         game.playerTwoScored()
 
         game.playerOneScored()
-
-        assertThat(game.printScore()).isEqualTo("advantage player one")
+        return game
     }
 
+    private fun deuce(): Game {
+        val game = Game()
 
+        game.playerOneScored()
+        game.playerOneScored()
+        game.playerOneScored()
+
+        game.playerTwoScored()
+        game.playerTwoScored()
+        game.playerTwoScored()
+        return game
+    }
 }
