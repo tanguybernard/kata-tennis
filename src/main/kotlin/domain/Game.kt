@@ -9,6 +9,7 @@ class Game {
         return GameScore(playerOne.getScore(), playerTwo.getScore())
     }
 
+
     fun playerOneScored() {
         playerOne.score()
     }

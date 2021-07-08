@@ -13,6 +13,7 @@ class GameTest {
 
         assertThat(gameScore.playerOne).isEqualTo(Score.ZERO)
         assertThat(gameScore.playerTwo).isEqualTo(Score.ZERO)
+        assertThat(gameScore.printScore()).isEqualTo("love-love")
     }
 
     @Test
@@ -36,4 +37,5 @@ class GameTest {
         assertThat(gameScore.playerOne).isEqualTo(Score.ZERO)
         assertThat(gameScore.playerTwo).isEqualTo(Score.FIFTEEN)
     }
+
 }
