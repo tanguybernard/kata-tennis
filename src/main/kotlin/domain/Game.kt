@@ -1,19 +1,32 @@
 package domain
 
-class Game {
+import java.lang.IllegalArgumentException
 
-    private val playerOne = Player()
-    private val playerTwo = Player()
+class Game {
+    
+    private var playerOneScore = 0
+    private var playerTwoScore = 0
 
     fun playerOneScored() {
-        playerOne.score()
+        playerOneScore++
     }
 
     fun playerTwoScored() {
-        playerTwo.score()
+        playerTwoScore++
     }
 
     fun printScore(): String {
-        return "${playerOne.getScore().value}-${playerTwo.getScore().value}"
+        return if (playerOneScore == 3 && playerTwoScore == 3) "deuce"
+        else "${printPlayerScore(playerOneScore)}-${printPlayerScore(playerTwoScore)}"
+    }
+
+    private fun printPlayerScore(score: Int): String {
+        return when (score) {
+            0 -> "love"
+            1 -> "15"
+            2 -> "30"
+            3 -> "40"
+            else -> throw IllegalArgumentException()
+        }
     }
 }
