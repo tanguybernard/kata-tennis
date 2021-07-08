@@ -79,7 +79,6 @@ class GameTest {
     }
 
     @Test
-    @Ignore
     fun `should display "advantage player one" when player one have score after deuce`() {
         val game = Game()
 

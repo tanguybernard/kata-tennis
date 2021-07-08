@@ -3,7 +3,7 @@ package domain
 import java.lang.IllegalArgumentException
 
 class Game {
-    
+
     private var playerOneScore = 0
     private var playerTwoScore = 0
 
@@ -16,6 +16,7 @@ class Game {
     }
 
     fun printScore(): String {
+        if(playerOneScore == 4) return "advantage player one"
         return if (playerOneScore == 3 && playerTwoScore == 3) "deuce"
         else "${printPlayerScore(playerOneScore)}-${printPlayerScore(playerTwoScore)}"
     }
