@@ -35,12 +35,6 @@ class Game {
     }
 
     private fun printPlayerScore(score: Int): String {
-        return when (score) {
-            0 -> "love"
-            1 -> "15"
-            2 -> "30"
-            3 -> "40"
-            else -> throw IllegalArgumentException()
-        }
+        return ScorePoints.values()[score].value
     }
 }
