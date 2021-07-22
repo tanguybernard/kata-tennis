@@ -2,7 +2,6 @@ package domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import kotlin.test.Ignore
 
 class GameTest {
 
@@ -64,7 +63,7 @@ class GameTest {
     }
 
     @Test
-    fun `should display "deuce" when player one and two made an equality`() {
+    fun `should display 'deuce' when player one and two made an equality`() {
         val game = Game()
 
         game.playerOneScored()
@@ -79,7 +78,7 @@ class GameTest {
     }
 
     @Test
-    fun `should display "advantage player one" when player one have score after deuce`() {
+    fun `should display 'advantage player one' when player one have score after deuce`() {
         val game = deuce()
 
         game.playerOneScored()
@@ -88,7 +87,7 @@ class GameTest {
     }
 
     @Test
-    fun `should display "advantage player two" when player two have score after deuce`() {
+    fun `should display 'advantage player two' when player two have score after deuce`() {
         val game = deuce()
 
         game.playerTwoScored()
@@ -97,24 +96,29 @@ class GameTest {
     }
 
     @Test
-    fun `should display "player one wins" when player one score while he has advantage`() {
+    fun `should display 'player one wins' when player one score while he has advantage`() {
         val game = playerOneHasAdvantage()
         game.playerOneScored()
 
         assertThat(game.printScore()).isEqualTo("player one wins")
     }
 
+    @Test
+    fun `should display 'player two wins' when player two score while he has advantage`() {
+        val game = playerTwoHasAdvantage()
+        game.playerTwoScored()
+
+        assertThat(game.printScore()).isEqualTo("player two wins")
+    }
+
+    private fun playerTwoHasAdvantage(): Game {
+        val game = deuce()
+        game.playerTwoScored()
+        return game
+    }
+
     private fun playerOneHasAdvantage(): Game {
-        val game = Game()
-
-        game.playerOneScored()
-        game.playerOneScored()
-        game.playerOneScored()
-
-        game.playerTwoScored()
-        game.playerTwoScored()
-        game.playerTwoScored()
-
+        val game = deuce()
         game.playerOneScored()
         return game
     }
