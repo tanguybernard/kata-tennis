@@ -14,17 +14,20 @@ class Game {
     }
 
     fun printScore(): String {
-        if(playerOneScore == 4 && playerTwoScore == 4) {
-            playerOneScore--
-            playerTwoScore--
-        }
-
+        fromAdvantageToDeuce()
         if (playerOneScore == 5) return "player one wins"
         if (playerTwoScore == 5) return "player two wins"
         if (playerOneScore == 4) return "advantage player one"
         if (playerTwoScore == 4) return "advantage player two"
         return if (playerOneScore == 3 && playerTwoScore == 3) "deuce"
         else "${printPlayerScore(playerOneScore)}-${printPlayerScore(playerTwoScore)}"
+    }
+
+    private fun fromAdvantageToDeuce() {
+        if (playerOneScore == 4 && playerTwoScore == 4) {
+            playerOneScore--
+            playerTwoScore--
+        }
     }
 
     private fun printPlayerScore(score: Int): String {
