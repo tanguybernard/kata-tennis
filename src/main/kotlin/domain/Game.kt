@@ -14,6 +14,11 @@ class Game {
     }
 
     fun printScore(): String {
+        if(playerOneScore == 4 && playerTwoScore == 4) {
+            playerOneScore--
+            playerTwoScore--
+        }
+
         if (playerOneScore == 5) return "player one wins"
         if (playerTwoScore == 5) return "player two wins"
         if (playerOneScore == 4) return "advantage player one"
