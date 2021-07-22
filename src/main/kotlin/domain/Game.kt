@@ -15,8 +15,8 @@ class Game {
 
     fun printScore(): String {
         fromAdvantageToDeuce()
-        if (playerOneScore == 5) return "player one wins"
-        if (playerTwoScore == 5) return "player two wins"
+        if (playerOneScore == 5 || (playerOneScore == 4 && playerTwoScore < 3)) return "player one wins"
+        if (playerTwoScore == 5 ||  (playerTwoScore == 4 && playerOneScore < 3)) return "player two wins"
         if (playerOneScore == 4) return "advantage player one"
         if (playerTwoScore == 4) return "advantage player two"
         return if (playerOneScore == 3 && playerTwoScore == 3) "deuce"

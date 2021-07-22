@@ -1,21 +1,25 @@
 package domain
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class GameTest {
 
+    lateinit var game: Game
+    
+    @BeforeEach
+    fun beforeEach() {
+        game = Game()
+    }
+
     @Test
     fun `should display both players initial score`() {
-        val game = Game()
-
         assertThat(game.printScore()).isEqualTo("love-love")
     }
 
     @Test
     fun `should display 15 - 0 when player one scored`() {
-        val game = Game()
-
         game.playerOneScored()
 
         assertThat(game.printScore()).isEqualTo("15-love")
@@ -23,8 +27,6 @@ class GameTest {
 
     @Test
     fun `should display 0 - 15 when player two scored`() {
-        val game = Game()
-
         game.playerTwoScored()
 
         assertThat(game.printScore()).isEqualTo("love-15")
@@ -32,8 +34,6 @@ class GameTest {
 
     @Test
     fun `should display 15 - 15 when both scored`() {
-        val game = Game()
-
         game.playerTwoScored()
         game.playerOneScored()
 
@@ -42,8 +42,6 @@ class GameTest {
 
     @Test
     fun `should display 30 - 15 when player one scored two times and player two once`() {
-        val game = Game()
-
         game.playerTwoScored()
         game.playerOneScored()
         game.playerOneScored()
@@ -53,33 +51,19 @@ class GameTest {
 
     @Test
     fun `should display 40 - 0 when player one scored three times and player two zero`() {
-        val game = Game()
-
-        game.playerOneScored()
-        game.playerOneScored()
-        game.playerOneScored()
-
+        playerOneScoreThreeTimes()
         assertThat(game.printScore()).isEqualTo("40-love")
     }
 
     @Test
     fun `should display 'deuce' when player one and two made an equality`() {
-        val game = Game()
-
-        game.playerOneScored()
-        game.playerOneScored()
-        game.playerOneScored()
-
-        game.playerTwoScored()
-        game.playerTwoScored()
-        game.playerTwoScored()
-
+        deuce()
         assertThat(game.printScore()).isEqualTo("deuce")
     }
 
     @Test
     fun `should display 'advantage player one' when player one have score after deuce`() {
-        val game = deuce()
+        deuce()
 
         game.playerOneScored()
 
@@ -88,7 +72,7 @@ class GameTest {
 
     @Test
     fun `should display 'advantage player two' when player two have score after deuce`() {
-        val game = deuce()
+        deuce()
 
         game.playerTwoScored()
 
@@ -97,7 +81,7 @@ class GameTest {
 
     @Test
     fun `should display 'player one wins' when player one score while he has advantage`() {
-        val game = playerOneHasAdvantage()
+        playerOneHasAdvantage()
         game.playerOneScored()
 
         assertThat(game.printScore()).isEqualTo("player one wins")
@@ -105,7 +89,7 @@ class GameTest {
 
     @Test
     fun `should display 'player two wins' when player two score while he has advantage`() {
-        val game = playerTwoHasAdvantage()
+        playerTwoHasAdvantage()
         game.playerTwoScored()
 
         assertThat(game.printScore()).isEqualTo("player two wins")
@@ -113,7 +97,7 @@ class GameTest {
 
     @Test
     fun `should display 'deuce' when player one has advantage and player two scored`() {
-        val game = playerOneHasAdvantage()
+        playerOneHasAdvantage()
         game.playerTwoScored()
 
         assertThat(game.printScore()).isEqualTo("deuce")
@@ -122,35 +106,51 @@ class GameTest {
 
     @Test
     fun `should display 'deuce' when player two has advantage and player one scored`() {
-        val game = playerTwoHasAdvantage()
+        playerTwoHasAdvantage()
         game.playerOneScored()
 
         assertThat(game.printScore()).isEqualTo("deuce")
 
     }
 
-    private fun playerTwoHasAdvantage(): Game {
-        val game = deuce()
-        game.playerTwoScored()
-        return game
+    @Test
+    fun `should display 'player one wins' when he scores four times`() {
+        playerOneScoreThreeTimes()
+        game.playerOneScored()
+        assertThat(game.printScore()).isEqualTo("player one wins")
     }
 
-    private fun playerOneHasAdvantage(): Game {
-        val game = deuce()
-        game.playerOneScored()
-        return game
+    @Test
+    fun `should display 'player two wins' when he scores four times`() {
+        playerTwoScoreThreeTimes()
+        game.playerTwoScored()
+        assertThat(game.printScore()).isEqualTo("player two wins")
     }
 
-    private fun deuce(): Game {
-        val game = Game()
+    private fun playerTwoHasAdvantage() {
+        deuce()
+        game.playerTwoScored()
+    }
 
+    private fun playerOneHasAdvantage() {
+        deuce()
         game.playerOneScored()
-        game.playerOneScored()
-        game.playerOneScored()
+    }
 
+    private fun playerOneScoreThreeTimes() {
+        game.playerOneScored()
+        game.playerOneScored()
+        game.playerOneScored()
+    }
+
+    private fun playerTwoScoreThreeTimes() {
         game.playerTwoScored()
         game.playerTwoScored()
         game.playerTwoScored()
-        return game
+    }
+
+    private fun deuce() {
+        playerOneScoreThreeTimes()
+        playerTwoScoreThreeTimes()
     }
 }
