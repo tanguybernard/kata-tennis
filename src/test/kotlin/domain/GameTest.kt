@@ -111,6 +111,15 @@ class GameTest {
         assertThat(game.printScore()).isEqualTo("player two wins")
     }
 
+    @Test
+    fun `should display 'deuce' when player one has advantage and player two scored`() {
+        val game = playerOneHasAdvantage()
+        game.playerTwoScored()
+
+        assertThat(game.printScore()).isEqualTo("deuce")
+
+    }
+
     private fun playerTwoHasAdvantage(): Game {
         val game = deuce()
         game.playerTwoScored()
